@@ -27,10 +27,12 @@ def lambda_handler(event, context):
     jst_date = parser.parse(utcdate).astimezone(pytz.timezone('Asia/Tokyo'))
     date = jst_date.strftime('%Y-%m-%d')
 
-    # 投稿メッセージ
+    # webhook用データ
+    username = 'クラウド'
+    avatar_url = 'https://www.jp.square-enix.com/ffvii_remake/fankit/_img/snsicon/ICON_CLOUD.jpg'
     content = (
         f"元ソルジャー1stのクラウドだ。\n"
-        f"あんたがAWSをいくら使おうと興味ないね\n"
+        f"あんたがAWSをいくら使おうと興味ないね。\n"
         f"[日付]: {date}\n"
         f"[料金]: ${cost}\n"
         f"[予測]: ${predicted}\n"
@@ -39,8 +41,8 @@ def lambda_handler(event, context):
 
     # Webhook
     data = {
-        'username': 'クラウド',
-        "avatar_url": 'https://www.jp.square-enix.com/ffvii_remake/fankit/_img/snsicon/ICON_CLOUD.jpg',
+        'username': username,
+        "avatar_url": avatar_url,
         "content": content
     }
 
